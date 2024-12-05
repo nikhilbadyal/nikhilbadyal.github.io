@@ -168,9 +168,11 @@ const images = document.querySelectorAll("img");
 
 images.forEach((img) => {
     // Determine environment and set the image path accordingly
-    if (img.src.includes("localhost")) {
+    // if (img.src.includes("localhost")) {
+    if (true) {
         img.src = localBaseUrl + img.getAttribute("src"); // Use local path for localhost
     } else {
         img.src = baseUrl + img.getAttribute("src"); // Use jsDelivr for other environments
     }
+    console.log(img.src)
 });
