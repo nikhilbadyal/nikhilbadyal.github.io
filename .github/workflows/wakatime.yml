@@ -1,0 +1,19 @@
+name: WakaTime status update
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "1 0 * * *"
+
+jobs:
+  update-readme:
+    name: Update the WakaTime Stat
+    runs-on: ubuntu-latest
+    steps:
+      - uses: nikhilbadyal/Profile-Readme-WakaTime@master
+        with:
+          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
+          BRANCH: "main"
+          COMMIT_MSG: "👽️Automated Coding Activity Update"
+          STATS_RANGE: "last_30_days"

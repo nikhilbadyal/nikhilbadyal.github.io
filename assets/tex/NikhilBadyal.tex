@@ -1,0 +1,191 @@
+%-------------------------
+% Resume in Latex
+% Author : Nikhil Badyal
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+% Just in case someone needs a heading that does not need to be in a list
+\newcommand{\resumeHeading}[4]{
+    \begin{tabular*}{0.99\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  CV STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\footskip}{0.5in}
+\begin{document}
+
+%----------HEADING-----------------
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{\href{https://nikhilbadyal.com/}{\Large Nikhil Badyal}} & Email : \href{mailto:possum-dawn-engulf@duck.com}{possum-dawn-engulf@duck.com}\\
+  \href{https://nikhilbadyal.com/}{https://nikhilbadyal.com}\\
+\end{tabular*}
+
+
+%-----------EDUCATION-----------------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Jadavpur University}{Kolkata, India}
+      {Bachelor of Engineering in Computer Science and Engineering;  GPA: 8.5}{July. 2018 -- July. 2022}
+    \resumeSubheading
+      {Jawahar Navodaya Vidyalaya}{JandK, India}
+      {Senior secondary;  Percentage: 95\%}{Nov 2011 -- June. 2018}
+  \resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Anchanto}{Remote, India}
+      {Senior Software Engineer}{Feb 2024 - Present}
+      \resumeItemListStart
+        \resumeItem{Multi-Tenant Architecture Specialist}
+          {Transformed the project from a single-tenant to a multi-tenant system, enabling the same codebase and hardware to support multiple customers with minimal resource overhead.}
+        \resumeItem{Tool Developer}
+          {Wrote EsXport, a tool that enabled the export of complex data from an Elasticsearch cluster by transforming SQL to NoSQL, significantly speeding up export requirements and bypassing traditional database methods.}
+        \resumeItem{Whitelabeled Branded URL}
+          {Developed the branded URL feature, enabling the creation of white-labeled URLs for customers, which are public and open to the world for searching.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Anchanto}{Remote, India}
+      {Software Engineer}{May 2022 - Feb 2024}
+      \resumeItemListStart
+        \resumeItem{API Development}
+          {Developed and wrote 50+ APIs to power core platform functionalities, managing over 100 million parcels and 4 billion events through optimized search and SQL-based transformation scripts for seamless data flow.}
+        \resumeItem{System Designer}
+          {Designed the database schema and architecture for efficient data storage, including table designs, ensuring high-performance event tracking and real-time search across millions of parcels.}
+        \resumeItem{ETL Engineer}
+          {Built ETL pipelines to transform raw tracking data from external carriers into manageable formats, enabling seamless integration and data storage for efficient parcel tracking, processing around 5 billion records to make the data manageable for the platform.}
+        \resumeItem{Cloud Infrastructure Engineer}
+          {Managed the complete cloud infrastructure, overseeing server uptime, downtimes, deployments, and ensuring smooth and reliable operations,while also reducing costs by 20pc.}
+        \resumeItem{Tool Developer}
+         {Wrote Esyncer, a tool to synchronize data from SQL (Postgres) to NoSQL (Elasticsearch), enabling faster search capabilities.}
+        \resumeItem{Performance Engineer}
+          {Optimized search capabilities to enable lightning-fast querying and tracking of 100 million parcels and 4 billion events in milliseconds.Integrated Elasticsearch to enable lightning-fast searches within milliseconds.}
+        \resumeItem{DevOps Engineer}
+          {Implemented Dockerization for the entire setup, ensuring consistency, scalability, and ease of deployment in both development and production environments.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Anchanto}{Remote, India}
+      {Software Intern}{Jan 2022 - May 2022}
+      \resumeItemListStart
+        \resumeItem{Backend Developer}
+          {Developed and wrote 10+ APIs to power core platform functionalities and improve system performance, while managing over 10 million parcels and 100 million events through SQL-based transformation scripts for seamless data flow.}
+        \resumeItem{System Designer}
+          {Designed the database schema and architecture using technologies like Redis and Redshift to ensure scalable and efficient data storage.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------------
+\section{Projects}
+  \resumeSubHeadingListStart
+    \resumeSubItem{Esxport}
+      {Open source python library for exporting elastic search index into a output file.}
+    \resumeSubItem{Tg-TOTP}
+      {A telegram bot which can generate 2FA login token.}
+    \resumeSubItem{Ghaction-rm-release}
+      {A GitHub action which helps in cleaning up older released along their tags.}
+    \resumeSubItem{KeepNotes}
+      {A cross platform Note writting app written in Flutter.}
+    \resumeSubItem{Pgextras}
+      {Unofficial Port of Herokus pgextra which provides various statistic for a postgres instance.}
+    \resumeSubItem{TGPT-Replier}
+      {A Telegram which can answer and communicate using Open API GPT APIs .}
+  \resumeSubHeadingListEnd
+
+%--------PROGRAMMING SKILLS------------
+\section{Programming Skills}
+ \resumeSubHeadingListStart
+   \item{
+     \textbf{Languages}{: Python, C++, SQL} \vspace{-5pt}
+   }
+   \item{
+     \textbf{Technologies}{: AWS, Docker, Elastic Search, Logstash, Git, Kibana, Django, Postgres}
+   }
+ \resumeSubHeadingListEnd
+  
+%-------------------------------------------
+\end{document}
