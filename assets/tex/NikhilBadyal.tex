@@ -1,7 +1,7 @@
 %-------------------------
-% Resume in Latex
-% Author : Nikhil Badyal
-% License : MIT
+% Resume in LaTeX
+% Author: Nikhil Badyal
+% License: MIT
 %------------------------
 
 \documentclass[letterpaper,11pt]{article}
@@ -93,22 +93,25 @@
 
 %----------HEADING-----------------
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-  \textbf{\href{https://www.nikhilbadyal.com/}{\Large Nikhil Badyal}} & Email : \href{mailto:possum-dawn-engulf@duck.com}{possum-dawn-engulf@duck.com}\\
-  \href{https://www.nikhilbadyal.com/}{https://www.nikhilbadyal.com}\\
+  \textbf{\href{https://www.nikhilbadyal.com/}{\Large Nikhil Badyal}} &  \href{mailto:possum-dawn-engulf@duck.com}{possum-dawn-engulf@duck.com} \\
+  Remote, India & \href{https://github.com/nikhilbadyal}{github.com/nikhilbadyal} \\
+  \href{https://www.nikhilbadyal.com/}{nikhilbadyal.com} & \\
 \end{tabular*}
-
 
 %-----------EDUCATION-----------------
 \section{Education}
   \resumeSubHeadingListStart
     \resumeSubheading
       {Jadavpur University}{Kolkata, India}
-      {Bachelor of Engineering in Computer Science and Engineering;  GPA: 8.5}{July. 2018 -- July. 2022}
+      {Bachelor of Engineering in Computer Science and Engineering; GPA: 8.5}{July 2018 -- July 2022}
+      \resumeItemListStart
+        \resumeItem{Relevant Coursework}{Data Structures, Algorithms, Database Systems, Distributed Computing}
+        \resumeItem{Honors}{Graduated with Distinction}
+      \resumeItemListEnd
     \resumeSubheading
       {Jawahar Navodaya Vidyalaya}{JandK, India}
-      {Senior secondary;  Percentage: 95\%}{Nov 2011 -- June. 2018}
+      {Senior Secondary; Percentage: 95\%}{Nov 2011 -- June 2018}
   \resumeSubHeadingListEnd
-
 
 %-----------EXPERIENCE-----------------
 \section{Experience}
@@ -116,76 +119,69 @@
 
     \resumeSubheading
       {Anchanto}{Remote, India}
-      {Senior Software Engineer}{Feb 2024 - Present}
+      {Senior Software Engineer}{Feb 2024 -- Present}
       \resumeItemListStart
         \resumeItem{Multi-Tenant Architecture Specialist}
-          {Transformed the project from a single-tenant to a multi-tenant system, enabling the same codebase and hardware to support multiple customers with minimal resource overhead.}
+          {Transformed the project from single-tenant to multi-tenant, supporting multiple customers and minimizing resource overhead.}
         \resumeItem{Tool Developer}
-          {Wrote EsXport, a tool that enabled the export of complex data from an Elasticsearch cluster by transforming SQL to NoSQL, significantly speeding up export requirements and bypassing traditional database methods.}
+          {Wrote \textbf{EsXport}, a tool for exporting complex Elasticsearch data, reducing export times by 90\%.}
         \resumeItem{Whitelabeled Branded URL}
-          {Developed the branded URL feature, enabling the creation of white-labeled URLs for customers, which are public and open to the world for searching.}
+          {Developed the branded URL feature, enabling clients to create white-labeled URLs for public searches.}
       \resumeItemListEnd
 
     \resumeSubheading
       {Anchanto}{Remote, India}
-      {Software Engineer}{May 2022 - Feb 2024}
+      {Software Engineer}{May 2022 -- Feb 2024}
       \resumeItemListStart
         \resumeItem{API Development}
-          {Developed and wrote 50+ APIs to power core platform functionalities, managing over 100 million parcels and 4 billion events through optimized search and SQL-based transformation scripts for seamless data flow.}
+          {Developed and optimized 50+ APIs, managing 100M+ parcels and 4B+ events, enabling seamless platform operations.}
         \resumeItem{System Designer}
           {Designed the database schema and architecture for efficient data storage, including table designs, ensuring high-performance event tracking and real-time search across millions of parcels.}
         \resumeItem{ETL Engineer}
-          {Built ETL pipelines to transform raw tracking data from external carriers into manageable formats, enabling seamless integration and data storage for efficient parcel tracking, processing around 5 billion records to make the data manageable for the platform.}
+          {Built ETL pipelines to transform raw tracking data from external carriers into manageable formats, enabling seamless integration, efficient data storage, and improved parcel tracking. These pipelines processed over 5 billion records, ensuring the data was optimized for the platform's performance and usability.}
         \resumeItem{Cloud Infrastructure Engineer}
-          {Managed the complete cloud infrastructure, overseeing server uptime, downtimes, deployments, and ensuring smooth and reliable operations,while also reducing costs by 20pc.}
+          {Managed the complete cloud infrastructure, overseeing server uptime, downtimes, deployments, and ensuring smooth and reliable operations while reducing costs by 30\%. I also ensured adherence to the 99.9999\% SLA commitment, maintaining exceptional service reliability..}
         \resumeItem{Tool Developer}
-         {Wrote Esyncer, a tool to synchronize data from SQL (Postgres) to NoSQL (Elasticsearch), enabling faster search capabilities.}
+          {Wrote \textbf{Esyncer}, a tool to synchronize data from SQL (Postgres) to NoSQL (Elasticsearch), enabling faster search capabilities.}
         \resumeItem{Performance Engineer}
-          {Optimized search capabilities to enable lightning-fast querying and tracking of 100 million parcels and 4 billion events in milliseconds.Integrated Elasticsearch to enable lightning-fast searches within milliseconds.}
+          {Optimized search capabilities to enable lightning-fast querying and tracking of 100 million parcels and 4 billion events in milliseconds. Integrated Elasticsearch with a replication setup, ensuring high availability and performance for real-time searches.}
         \resumeItem{DevOps Engineer}
-          {Implemented Dockerization for the entire setup, ensuring consistency, scalability, and ease of deployment in both development and production environments.}
+          {Dockerized the infrastructure, enhancing consistency and scalability across environments.}
       \resumeItemListEnd
-
     \resumeSubheading
       {Anchanto}{Remote, India}
-      {Software Intern}{Jan 2022 - May 2022}
+      {Software Engineering Intern}{Jan 2022 -- May 2024}
       \resumeItemListStart
-        \resumeItem{Backend Developer}
+        \resumeItem{Backend \& ETL Enginner}
           {Developed and wrote 10+ APIs to power core platform functionalities and improve system performance, while managing over 10 million parcels and 100 million events through SQL-based transformation scripts for seamless data flow.}
-        \resumeItem{System Designer}
-          {Designed the database schema and architecture using technologies like Redis and Redshift to ensure scalable and efficient data storage.}
-      \resumeItemListEnd
+        \resumeItem{CI/CD Pipeline Setup and Automation}
+          {Set up and configured CI/CD pipelines for a project, automating build, test, and deployment processes to streamline development workflows, improve code quality, and accelerate delivery cycles.}
+       \resumeItemListEnd
 
   \resumeSubHeadingListEnd
-
 
 %-----------PROJECTS-----------------
 \section{Projects}
   \resumeSubHeadingListStart
     \resumeSubItem{Esxport}
-      {Open source python library for exporting elastic search index into a output file.}
+      {Open-source Python library for exporting Elasticsearch indices into file outputs. \href{https://github.com/nikhilbadyal/esxport}{GitHub Link}}
     \resumeSubItem{Tg-TOTP}
-      {A telegram bot which can generate 2FA login token.}
+      {Telegram bot for generating 2FA tokens for secure logins. \href{https://github.com/nikhilbadyal/tg-totp}{GitHub Link}}
     \resumeSubItem{Ghaction-rm-release}
-      {A GitHub action which helps in cleaning up older released along their tags.}
+      {GitHub action for automating release cleanups with tag removal. \href{https://github.com/nikhilbadyal/ghaction-rm-releases}{GitHub Link}}
     \resumeSubItem{KeepNotes}
-      {A cross platform Note writting app written in Flutter.}
+      {Cross-platform note-taking app built with Flutter. \href{https://github.com/nikhilbadyal/keepnotes}{GitHub Link}}
     \resumeSubItem{Pgextras}
-      {Unofficial Port of Herokus pgextra which provides various statistic for a postgres instance.}
-    \resumeSubItem{TGPT-Replier}
-      {A Telegram which can answer and communicate using Open API GPT APIs .}
+      {Unofficial Heroku Pgextras port for PostgreSQL instance statistics. \href{https://github.com/nikhilbadyal/pgextras}{GitHub Link}}
   \resumeSubHeadingListEnd
 
 %--------PROGRAMMING SKILLS------------
 \section{Programming Skills}
- \resumeSubHeadingListStart
-   \item{
-     \textbf{Languages}{: Python, C++, SQL} \vspace{-5pt}
-   }
-   \item{
-     \textbf{Technologies}{: AWS, Docker, Elastic Search, Logstash, Git, Kibana, Django, Postgres}
-   }
- \resumeSubHeadingListEnd
+\begin{tabularx}{\textwidth}{X X}
+\textbf{Languages:} Python, C++, SQL, Dart & \textbf{Databases:} PostgreSQL, Redis, Elasticsearch \\
+\textbf{Frameworks:} Django, Flutter & \textbf{DevOps:} Docker, Kubernetes, Git \\
+\textbf{Cloud:} AWS, GCP & \textbf{Tools:} Kibana, Logstash \\
+\end{tabularx}
 
 %-------------------------------------------
 \end{document}
