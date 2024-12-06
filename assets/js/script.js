@@ -176,3 +176,7 @@ images.forEach((img) => {
     }
     console.log(img.src)
 });
+
+document.querySelectorAll('.project-item a').forEach(link => {
+    link.setAttribute('target', '_blank');
+  });
