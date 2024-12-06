@@ -3,14 +3,6 @@
 \*-----------------------------------*/
 
 
-/**
- * copyright 2022 @codewithsadee
- */
-
-
-
-
-
 /*-----------------------------------*\
   #CUSTOM PROPERTY
 \*-----------------------------------*/
@@ -154,7 +146,7 @@ input, textarea {
 
 :focus { outline-color: var(--orange-yellow-crayola); }
 
-html { font-family: var(--ff-poppins); }
+html { font-family: var(--ff-poppins), serif; }
 
 body { background: var(--smoky-black); }
 
@@ -276,8 +268,7 @@ article.active {
 .content-card {
   position: relative;
   background: var(--border-gradient-onyx);
-  padding: 15px;
-  padding-top: 45px;
+  padding: 45px 15px 15px;
   border-radius: 14px;
   box-shadow: var(--shadow-2);
   cursor: pointer;
@@ -302,8 +293,7 @@ article.active {
 \*-----------------------------------*/
 
 main {
-  margin: 15px 12px;
-  margin-bottom: 75px;
+  margin: 15px 12px 75px;
   min-width: 259px;
 }
 
@@ -571,8 +561,7 @@ main {
   align-items: flex-start;
   gap: 15px;
   margin: 0 -15px;
-  padding: 25px 15px;
-  padding-bottom: 35px;
+  padding: 25px 15px 35px;
   overflow-x: auto;
   scroll-behavior: smooth;
   overscroll-behavior-inline: contain;
@@ -736,7 +725,6 @@ main {
   gap: 15px;
   margin: 0 -15px;
   padding: 25px;
-  padding-bottom: 25px;
   overflow-x: auto;
   scroll-behavior: smooth;
   overscroll-behavior-inline: contain;
@@ -1482,13 +1470,11 @@ textarea.form-input::-webkit-resizer { display: none; }
   .testimonials-list {
     gap: 30px;
     margin: 0 -30px;
-    padding: 30px;
-    padding-bottom: 35px;
+    padding: 30px 30px 35px;
   }
 
   .content-card {
-    padding: 30px;
-    padding-top: 25px;
+    padding: 25px 30px 30px;
   }
 
   .testimonials-avatar-box {
