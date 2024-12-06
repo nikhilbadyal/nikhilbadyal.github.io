@@ -2,6 +2,25 @@
 
 
 
+// Base URL for jsDelivr
+const baseUrl = "https://cdn.jsdelivr.net/gh/nikhilbadyal/nikhilbadyal.github.io@main/assets/images/";
+const localBaseUrl = "./assets/images/";
+
+// Select all <img> tags
+const images = document.querySelectorAll("img");
+
+images.forEach((img) => {
+    // Determine environment and set the image path accordingly
+    // if (img.src.includes("localhost")) {
+    if (true) {
+        img.src = localBaseUrl + img.getAttribute("src"); // Use local path for localhost
+    } else {
+        img.src = baseUrl + img.getAttribute("src"); // Use jsDelivr for other environments
+    }
+    console.log(img.src)
+});
+
+
 // element toggle function
 const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
 
@@ -158,24 +177,6 @@ for (let i = 0; i < navigationLinks.length; i++) {
   });
 }
 
-
-// Base URL for jsDelivr
-const baseUrl = "https://cdn.jsdelivr.net/gh/nikhilbadyal/nikhilbadyal.github.io@main/assets/images/";
-const localBaseUrl = "./assets/images/";
-
-// Select all <img> tags
-const images = document.querySelectorAll("img");
-
-images.forEach((img) => {
-    // Determine environment and set the image path accordingly
-    // if (img.src.includes("localhost")) {
-    if (true) {
-        img.src = localBaseUrl + img.getAttribute("src"); // Use local path for localhost
-    } else {
-        img.src = baseUrl + img.getAttribute("src"); // Use jsDelivr for other environments
-    }
-    console.log(img.src)
-});
 
 document.querySelectorAll('.project-item a').forEach(link => {
     link.setAttribute('target', '_blank');
