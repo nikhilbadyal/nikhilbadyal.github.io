@@ -1,5 +1,42 @@
 'use strict';
 
+document.addEventListener("DOMContentLoaded", () => {
+  const navLinks = document.querySelectorAll('[data-nav-link]');
+  const sections = document.querySelectorAll('article');
+
+  // Function to show the section based on the URL hash
+  const showSection = () => {
+    const hash = window.location.hash || '#about';  // Default to About if no hash is present
+    sections.forEach(section => {
+      section.classList.remove('active');  // Hide all sections
+      if (section.id === hash.substring(1)) {
+        section.classList.add('active');  // Show the matching section
+      }
+    });
+
+    // Update active link
+    navLinks.forEach(link => {
+      link.classList.remove('active');  // Remove active class from all links
+      if (link.getAttribute('data-nav-link') === hash) {
+        link.classList.add('active');  // Add active class to the clicked link
+      }
+    });
+  };
+
+  // Handle link click events
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      window.location.hash = link.getAttribute('data-nav-link');  // Update the URL hash
+      showSection();  // Show the appropriate section
+    });
+  });
+
+  // Initial page load or when the hash changes
+  window.addEventListener('hashchange', showSection);
+
+  // Call to show the section when the page loads
+  showSection();
+});
 
 
 // Base URL for jsDelivr
