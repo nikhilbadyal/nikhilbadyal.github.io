@@ -181,3 +181,36 @@ for (let i = 0; i < navigationLinks.length; i++) {
 document.querySelectorAll('.project-item a').forEach(link => {
     link.setAttribute('target', '_blank');
   });
+
+
+function copyEmail() {
+  const email = document.getElementById('email').textContent; // Get the email address
+  navigator.clipboard.writeText(email).then(
+    () => {
+      showToast(); // Show the toast notification
+    },
+    (err) => {
+      console.error('Failed to copy email address:', err);
+    }
+  );
+}
+
+function showToast() {
+  const toast = document.getElementById('toast');
+  toast.classList.add('show'); // Add the show class to display the toast
+
+  // Hide the toast after 2 seconds
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3000);
+}
+
+// Function to close the toast
+function closeToast() {
+  const toast = document.getElementById('toast');
+  toast.classList.remove('show'); // Hide the toast
+}
+
+if ('vibrate' in navigator) {
+  navigator.vibrate(100); // Vibrate for 100ms
+}

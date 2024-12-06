@@ -437,8 +437,74 @@ main {
 
 .social-item .social-link:hover { color: var(--light-gray); }
 
+/* Copy Button Styles */
+.copy-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
+.copy-btn {
+  background: none;
+  border: none;
+  color: var(--white-2);
+  font-size: 18px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
 
+.copy-btn:hover,
+.copy-btn:focus {
+  color: var(--orange-yellow-crayola);
+}
+
+.copy-btn:active {
+  transform: scale(0.95);
+}
+
+/* Toast Notification Styles */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--eerie-black-2);  /* Dark background */
+  color: var(--orange-yellow-crayola);             /* Warm yellow text */
+  padding: 15px 30px;         /* Increased padding for larger size */
+  border-radius: 12px;        /* Rounded corners */
+  font-size: 16px;            /* Larger font size */
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+  transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.3s ease; /* Add transform transition for a slight move */
+}
+
+/* Toast show when active */
+.toast.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0); /* Move it up into place */
+}
+
+/* Close button styling */
+.close-toast {
+  background: none;
+  border: none;
+  color: #FFDB6E;
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-toast:hover {
+  color: #FFD700; /* Slightly brighter yellow */
+}
 
 
 /*-----------------------------------*\

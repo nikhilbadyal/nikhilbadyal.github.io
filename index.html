@@ -76,7 +76,12 @@
             <div class="contact-info">
               <p class="contact-title">Email</p>
 
-              <a href="mailto:guts-crusher-ought@duck.com" class="contact-link">guts-crusher-ought@duck.com</a>
+              <div class="copy-container">
+                <a href="mailto:guts-crusher-ought@duck.com" class="contact-link" id="email">guts-crusher-ought@duck.com</a>
+                <button class="copy-btn" onclick="copyEmail()" aria-label="Copy Email">
+                  <ion-icon name="copy-outline"></ion-icon>
+                </button>
+              </div>
             </div>
 
           </li>
@@ -138,6 +143,15 @@
       </div>
 
     </aside>
+
+    <!--
+      - #TOAST for EMAIL COPY
+    -->
+    <div id="toast" class="toast">
+      <span>Email copied to clipboard!</span>
+      <button class="close-toast" onclick="closeToast()">×</button>
+    </div>
+
 
 
 
@@ -513,9 +527,6 @@
         </section>
 
       </article>
-
-
-
 
 
       <!--
