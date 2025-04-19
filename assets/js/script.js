@@ -211,3 +211,24 @@ function closeToast() {
 if ('vibrate' in navigator) {
   navigator.vibrate(100); // Vibrate for 100ms
 }
+
+
+// === Tracking Script ===
+fetch("https://tracker.wool-rage-jimmy.workers.dev", {
+  method: "POST",
+  keepalive: true,
+  body: JSON.stringify({
+    referrer: document.referrer,
+    userAgent: navigator.userAgent,
+    screen: {
+      width: screen.width,
+      height: screen.height
+    },
+    url: window.location.href
+  }),
+  headers: {
+    "Content-Type": "application/json"
+  }
+}).catch((e) => {
+  console.warn("Tracking failed:", e);
+});
