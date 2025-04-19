@@ -211,3 +211,33 @@ function closeToast() {
 if ('vibrate' in navigator) {
   navigator.vibrate(100); // Vibrate for 100ms
 }
+
+(async () => {
+  try {
+    const res = await fetch("https://tracker.wool-rage-jimmy.workers.dev/", {
+      method: "POST",
+      keepalive: true,
+      body: JSON.stringify({
+        referrer: document.referrer,
+        userAgent: navigator.userAgent,
+        screen: {
+          width: screen.width,
+          height: screen.height
+        },
+        url: window.location.href
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      console.error("Tracking failed with status:", res.status, text);
+    } else {
+      console.log("Tracking successful.");
+    }
+  } catch (err) {
+    console.error("Tracking failed with error:", err);
+  }
+})();
