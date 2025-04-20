@@ -5,11 +5,15 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'tracker/**'  # Trigger deployment for Tracker when files in 'tracker' folder change
+      - 'sender/**'    # Trigger deployment for Sender when files in 'sender' folder change
 
 jobs:
   deploy-tracker:
     runs-on: ubuntu-latest
     name: Deploy Tracker
+    if: ${{ contains(github.event.head_commit.message, 'tracker') || github.event_name == 'workflow_dispatch' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -38,6 +42,7 @@ jobs:
   deploy-sender:
     runs-on: ubuntu-latest
     name: Deploy Sender
+    if: ${{ contains(github.event.head_commit.message, 'sender') || github.event_name == 'workflow_dispatch' }}
     steps:
       - uses: actions/checkout@v4
 
