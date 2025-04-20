@@ -241,3 +241,38 @@ if ('vibrate' in navigator) {
     console.error("Tracking failed with error:", err);
   }
 })();
+
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault(); // Prevent actual form submission
+
+  const formData = {
+    name: form.fullname.value,
+    email: form.email.value,
+    message: form.message.value,
+  };
+
+  try {
+    const response = await fetch("http://localhost:8787", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    });
+
+    if (response.ok) {
+      alert("Message sent successfully!");
+      form.reset();
+      formBtn.setAttribute("disabled", ""); // Disable again after reset
+    } else {
+      const errorText = await response.text();
+      console.error("Failed to send:", errorText);
+      alert("Failed to send message. Try again later.");
+    }
+  } catch (err) {
+    console.error("Network error:", err);
+    alert("Network error. Try again later.");
+  }
+});
+
