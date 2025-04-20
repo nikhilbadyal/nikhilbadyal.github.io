@@ -270,11 +270,13 @@ if ('vibrate' in navigator) {
     if (!res.ok) {
       const text = await res.text();
       console.error("Tracking failed with status:", res.status, text);
+      showToast("Tracking failed.");
     } else {
       console.log("Tracking successful.");
     }
   } catch (err) {
     console.error("Tracking failed with error:", err);
+    showToast("Tracking failed.");
   }
 })();
 
