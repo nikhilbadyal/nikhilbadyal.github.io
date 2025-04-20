@@ -13,7 +13,6 @@ jobs:
   deploy-tracker:
     runs-on: ubuntu-latest
     name: Deploy Tracker
-    if: ${{ contains(github.event.head_commit.message, 'tracker') || github.event_name == 'workflow_dispatch' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -37,12 +36,13 @@ jobs:
           WORKER_NAME=${{ secrets.CF_TRACKER_WORKER }} \
           KV_NAME=${{ secrets.CF_KV_NAME }} \
           KV_NAMESPACE_ID=${{ secrets.CF_KV_NAMESPACE_ID }} \
+          RATE_KV_NAME=${{ secrets.RATE_KV_NAME }} \
+          RATE_NAMESPACE_ID=${{ secrets.RATE_NAMESPACE_ID }} \
           bash deploy.sh
 
   deploy-sender:
     runs-on: ubuntu-latest
     name: Deploy Sender
-    if: ${{ contains(github.event.head_commit.message, 'sender') || github.event_name == 'workflow_dispatch' }}
     steps:
       - uses: actions/checkout@v4
 

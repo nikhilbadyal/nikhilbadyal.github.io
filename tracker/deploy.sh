@@ -2,7 +2,9 @@
 
 # Check for required env vars
 : "${KV_NAMESPACE_ID:?Need to set KV_NAMESPACE_ID}"
+: "${RATE_NAMESPACE_ID:?Need to set RATE_NAMESPACE_ID}"
 : "${KV_NAME:?Need to set KV_NAME}"
+: "${RATE_KV_NAME:?Need to set RATE_KV_NAME}"
 : "${WORKER_NAME:?Need to set WORKER_NAME}"
 : "${MAIN_FILE:=src/index.js}"
 
@@ -28,6 +30,10 @@ cat > wrangler.jsonc <<EOF
     {
       "binding": "$KV_NAME",
       "id": "$KV_NAMESPACE_ID"
+    },
+		{
+      "binding": "$RATE_KV_NAME",
+      "id": "$RATE_NAMESPACE_ID"
     }
   ]
 }
