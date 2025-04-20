@@ -215,18 +215,53 @@ if ('vibrate' in navigator) {
 
 (async () => {
   try {
+    let sessionId = sessionStorage.getItem("sessionId");
+    if (!sessionId) {
+      try {
+        sessionId = crypto.randomUUID();
+        sessionStorage.setItem("sessionId", sessionId);
+      } catch (error) {
+        console.error("Error managing sessionStorage:", error);
+        sessionId = 'fallback-' + Date.now(); // Fallback in case sessionStorage fails
+      }
+    }
+    await new Promise((resolve) => {
+      if (document.readyState === "complete") resolve();
+      else window.addEventListener("load", resolve);
+    });
+    const payload = {
+      referrer: document.referrer,
+      url: window.location.href,
+      title: document.title,
+      pathname: window.location.pathname,
+      search: window.location.search,
+      hash: window.location.hash,
+      userAgent: navigator.userAgent,
+      language: navigator.language,
+      cpuCores: navigator.hardwareConcurrency,
+      deviceMemory: navigator.deviceMemory || null,
+      connection: {
+        effectiveType: navigator.connection?.effectiveType || null,
+        downlink: navigator.connection?.downlink || null,
+        rtt: navigator.connection?.rtt || null
+      },
+      screen: {
+        width: screen.width,
+        height: screen.height,
+        pixelRatio: window.devicePixelRatio,
+        orientation: screen.orientation?.type || null
+      },
+      doNotTrack: navigator.doNotTrack,
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      visibility: document.visibilityState,
+      sessionId: sessionId,
+      isBot: /bot|crawl|spider|slurp|facebook|embed/i.test(navigator.userAgent),
+      timestamp: new Date().toISOString()
+    };
     const res = await fetch("https://tracker.wool-rage-jimmy.workers.dev/", {
       method: "POST",
       keepalive: true,
-      body: JSON.stringify({
-        referrer: document.referrer,
-        userAgent: navigator.userAgent,
-        screen: {
-          width: screen.width,
-          height: screen.height
-        },
-        url: window.location.href
-      }),
+      body: JSON.stringify(payload),
       headers: {
         "Content-Type": "application/json"
       }
