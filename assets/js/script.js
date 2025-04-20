@@ -184,7 +184,7 @@ function copyEmail() {
   const email = document.getElementById('email').textContent; // Get the email address
   navigator.clipboard.writeText(email).then(
     () => {
-      showToast(); // Show the toast notification
+      showToast("Copied!"); // Show the toast notification
     },
     (err) => {
       console.error('Failed to copy email address:', err);
@@ -192,8 +192,9 @@ function copyEmail() {
   );
 }
 
-function showToast() {
+function showToast(message) {
   const toast = document.getElementById('toast');
+  toast.textContent = message;
   toast.classList.add('show'); // Add the show class to display the toast
 
   // Hide the toast after 2 seconds
@@ -262,17 +263,17 @@ form.addEventListener("submit", async (event) => {
     });
 
     if (response.ok) {
-      alert("Message sent successfully!");
+      showToast("Message sent successfully!");
       form.reset();
-      formBtn.setAttribute("disabled", ""); // Disable again after reset
+      formBtn.setAttribute("disabled", "");
     } else {
       const errorText = await response.text();
       console.error("Failed to send:", errorText);
-      alert("Failed to send message. Try again later.");
+      showToast("Failed to send message. Try again later.");
     }
   } catch (err) {
     console.error("Network error:", err);
-    alert("Network error. Try again later.");
+    showToast("Network error. Try again later.");
   }
 });
 

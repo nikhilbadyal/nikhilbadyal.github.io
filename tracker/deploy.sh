@@ -8,7 +8,8 @@
 
 
 # Check for wrangler first
-if ! command -v wrangler &> /dev/null; then
+WRANGLER_CMD="wrangler"
+if ! command -v "$WRANGLER_CMD" &> /dev/null; then
     echo "Error: wrangler CLI not found. Please install it with 'pnpm install -g wrangler'"
     exit 1
 fi
@@ -51,7 +52,7 @@ echo "Verification successful. Matched line: $MATCHED_LINE"
 echo "=====Deploying Worker ====="
 echo "Deploying Worker '$WORKER_NAME'..."
 # Deploy using the updated wrangler.jsonc and capture output
-DEPLOY_OUTPUT=$(wrangler deploy)
+DEPLOY_OUTPUT=$("$WRANGLER_CMD"  deploy)
 echo "$DEPLOY_OUTPUT" # Show deployment output
 
 echo "===== Deployment Complete ====="

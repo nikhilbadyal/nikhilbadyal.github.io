@@ -1,0 +1,62 @@
+name: Deploy to Worker
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-tracker:
+    runs-on: ubuntu-latest
+    name: Deploy Tracker
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "latest"
+
+      - name: Install wrangler
+        run: npm install -g wrangler
+
+      - name: Set up Cloudflare credentials
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          echo "CLOUDFLARE_API_TOKEN=$CLOUDFLARE_API_TOKEN" >> $GITHUB_ENV
+
+      - name: Deploy Tracker
+        run: |
+          cd tracker
+          DOMAIN=${{ secrets.CF_DOMAIN }} \
+          WORKER_NAME=${{ secrets.CF_TRACKER_WORKER }} \
+          KV_NAME=${{ secrets.CF_KV_NAME }} \
+          KV_NAMESPACE_ID=${{ secrets.CF_KV_NAMESPACE_ID }} \
+          bash deploy.sh
+
+  deploy-sender:
+    runs-on: ubuntu-latest
+    name: Deploy Sender
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "latest"
+
+      - name: Install wrangler
+        run: npm install -g wrangler
+
+      - name: Set up Cloudflare credentials
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          echo "CLOUDFLARE_API_TOKEN=$CLOUDFLARE_API_TOKEN" >> $GITHUB_ENV
+
+      - name: Deploy Sender
+        run: |
+          cd sender
+          DOMAIN=${{ secrets.CF_DOMAIN }} \
+          WORKER_NAME=${{ secrets.CF_SENDER_WORKER }} \
+          bash deploy.sh
