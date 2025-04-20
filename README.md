@@ -7,10 +7,9 @@
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=nikhilbadyal&label=Profile%20views&color=0e75b6&style=flat" alt="nikhilbadyal" /> </p>
 <p align="left"> <img src="https://raw.githubusercontent.com/nikhilbadyal/nikhilbadyal/refs/heads/main/images/stat.svg" alt="Nikhil WakaTime Activity" /> </p>
 
-
 ## 🏆 GitHub Trophies
-![](https://github-profile-trophy.vercel.app/?username=nikhilbadyal&theme=onedark&no-frame=false&no-bg=true&margin-w=4)
 
+![](https://github-profile-trophy.vercel.app/?username=nikhilbadyal&theme=onedark&no-frame=false&no-bg=true&margin-w=4)
 
 - 🔭 I’m currently working on [Docker Py Revanced](https://github.com/nikhilbadyal/docker-py-revanced)
 
@@ -21,7 +20,6 @@
 - 👨‍💻 All of my projects are available at [GitHub](https://github.com/nikhilbadyal?tab=repositories&sort=)
 
 - ⚡ Fun fact: I use tabs over spaces
-
 
 <h3 align="left">🛠 Languages and Tools:</h3>
 <p align="left"> 
@@ -60,14 +58,14 @@
    </a> 
 </p>
 
-
 # 📊 GitHub Stats:
+
 ![](https://github-readme-stats.vercel.app/api?username=nikhilbadyal&theme=dark&hide_border=false&include_all_commits=false&count_private=true)<br/>
 ![](https://github-readme-streak-stats.herokuapp.com/?user=nikhilbadyal&theme=dark&hide_border=false)<br/>
 ![](https://github-readme-stats.vercel.app/api/top-langs/?username=nikhilbadyal&theme=dark&hide_border=false&include_all_commits=false&count_private=true&layout=compact)
 
-
 ## 🌐 Connect with me
+
 <div style="text-align: center;">
   <a href="https://github.com/nikhilbadyal" target="_blank" rel="noopener noreferrer">
     <img src="https://img.shields.io/badge/github-%2324292e.svg?&style=for-the-badge&logo=github&logoColor=white" alt="GitHub" style="margin-bottom: 5px;" />

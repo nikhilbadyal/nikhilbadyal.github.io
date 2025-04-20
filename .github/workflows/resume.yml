@@ -19,7 +19,7 @@ jobs:
       - name: Compile Tex to PDF
         uses: xu-cheng/latex-action@3.2.0
         with:
-          root_file: 'assets/tex/NikhilBadyal.tex'
+          root_file: "assets/tex/NikhilBadyal.tex"
       - name: Move PDF to pdf directory
         run: |
           mv NikhilBadyal.pdf assets/pdfs/NikhilBadyal.pdf
@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@v4.4.3
         with:
           name: Resume
-          path: 'assets/pdfs/NikhilBadyal.pdf'
+          path: "assets/pdfs/NikhilBadyal.pdf"
       - name: Get Date
         id: get-date
         run: |
@@ -38,9 +38,9 @@ jobs:
         with:
           branch: resumes
           skip_checkout: true
-          file_pattern: 'assets/pdfs/NikhilBadyal.pdf'
-          commit_message: '🚀Resume Update ${{ steps.get-date.outputs.date }}'
-          push_options: '--force'
+          file_pattern: "assets/pdfs/NikhilBadyal.pdf"
+          commit_message: "🚀Resume Update ${{ steps.get-date.outputs.date }}"
+          push_options: "--force"
       - name: Upload Build Artifact
         uses: ncipollo/release-action@main
         with:

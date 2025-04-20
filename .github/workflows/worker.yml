@@ -6,8 +6,8 @@ on:
     branches:
       - main
     paths:
-      - 'tracker/**'  # Trigger deployment for Tracker when files in 'tracker' folder change
-      - 'sender/**'    # Trigger deployment for Sender when files in 'sender' folder change
+      - "tracker/**" # Trigger deployment for Tracker when files in 'tracker' folder change
+      - "sender/**" # Trigger deployment for Sender when files in 'sender' folder change
 
 jobs:
   deploy-tracker:
