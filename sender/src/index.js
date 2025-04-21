@@ -43,6 +43,7 @@ export default {
 			try {
 				data = await request.json();
 			} catch (err) {
+				console.error("Failed to parse JSON:", err); // Log the actual error for debugging
 				return new Response("Invalid JSON", {
 					status: 400,
 					headers: corsHeaders,
