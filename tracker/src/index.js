@@ -66,7 +66,7 @@ export default {
 		const rateLimitData = await env.RATE_LIMIT_KV.get(rateLimitKey, {
 			type: "json",
 		});
-		const rateLimitWindow = 60 * 1000; // 1 minute window
+		const rateLimitWindow = 60 * 1000; // 1-minute window
 		const maxRequestsPerMinute = 100; // Limit requests to 10 per minute
 
 		if (rateLimitData && rateLimitData.count >= maxRequestsPerMinute) {
@@ -113,8 +113,6 @@ export default {
 		// --- Store Tracking Data in KV ---
 		try {
 			await env.TRACKING_KV.put(`visit:${now}`, JSON.stringify(entry));
-			// Consider logging success (if needed)
-			// console.log('Tracking data stored:', entry);
 		} catch (error) {
 			console.error("Error storing tracking data:", error);
 			return new Response("Error storing data", { status: 500 });
