@@ -968,13 +968,10 @@
 									class="cf-turnstile"
 									data-sitekey="0x4AAAAAABQ3R_9yl5D2AaAc"
 									data-callback="onTurnstileSuccess"
+									data-expired-callback="onTurnstileExpired"
 							></div>
 
-							<script>
-								function onTurnstileSuccess(token) {
-									document.querySelector('[data-form-btn]').disabled = false;
-								}
-							</script>
+
 							<button class="form-btn" type="submit" disabled data-form-btn>
 								<ion-icon name="paper-plane"></ion-icon>
 								<span>Send Message</span>

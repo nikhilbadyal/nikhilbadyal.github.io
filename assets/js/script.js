@@ -4,7 +4,26 @@
 const JS_DELIVR_BASE_URL =
 	"https://cdn.jsdelivr.net/gh/nikhilbadyal/nikhilbadyal.github.io@main/assets/images/";
 const LOCAL_BASE_URL = "./assets/images/";
+let form, formInputs, formBtn;
+let captchaCompleted = false;
 
+function checkFormValidity() {
+	if (form?.checkValidity() && captchaCompleted) {
+		formBtn?.removeAttribute("disabled");
+	} else {
+		formBtn?.setAttribute("disabled", "");
+	}
+}
+
+function onTurnstileSuccess(token) {
+	captchaCompleted = true;
+	checkFormValidity();
+}
+
+function onTurnstileExpired() {
+	captchaCompleted = false;
+	checkFormValidity();
+}
 // --- Helper Functions ---
 
 /**
@@ -233,23 +252,15 @@ function initPortfolioFilter() {
  * Initializes contact form validation and submission handling.
  */
 function initContactForm() {
-	const form = document.querySelector("[data-form]");
-	const formInputs = document.querySelectorAll("[data-form-input]");
-	const formBtn = document.querySelector("[data-form-btn]");
+	form = document.querySelector("[data-form]");
+	formInputs = document.querySelectorAll("[data-form-input]");
+	formBtn = document.querySelector("[data-form-btn]");
 
 	if (!form || formInputs.length === 0 || !formBtn) {
 		console.warn("Contact form elements not found.");
 		return;
 	}
 
-	// Enable/disable button based on form validity
-	const checkFormValidity = () => {
-		if (form.checkValidity()) {
-			formBtn.removeAttribute("disabled");
-		} else {
-			formBtn.setAttribute("disabled", "");
-		}
-	};
 
 	formInputs.forEach((input) => {
 		input.addEventListener("input", checkFormValidity);
@@ -285,7 +296,7 @@ function initContactForm() {
 				if (window.turnstile && typeof turnstile.reset === "function") {
 					turnstile.reset();
 				}
-
+				captchaCompleted = false; // Reset captcha flag
 				checkFormValidity(); // Disable button until user starts typing again
 			} else {
 				const errorText = await response.text();
