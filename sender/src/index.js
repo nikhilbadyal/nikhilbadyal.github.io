@@ -50,7 +50,33 @@ export default {
 				});
 			}
 
-			const { fullname, email, message } = data;
+			const { fullname, email, message, token } = data;
+
+			if (!token) {
+				return new Response("Missing Turnstile token", {
+					status: 400,
+					headers: corsHeaders,
+				});
+			}
+
+			const verificationRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded",
+				},
+				body: `secret=${env.TURNSTILE_SECRET_KEY}&response=${token}`,
+			});
+
+			const verificationData = await verificationRes.json();
+
+			if (!verificationData.success) {
+				console.log("Turnstile verification failed", verificationData);
+				return new Response("CAPTCHA failed", {
+					status: 403,
+					headers: corsHeaders,
+				});
+			}
+
 
 			const text = `
 					📬 *New Contact Form Message*

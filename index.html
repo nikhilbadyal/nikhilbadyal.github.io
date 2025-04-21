@@ -26,6 +26,7 @@
 			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
 			rel="stylesheet"
 		/>
+		<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 	</head>
 
 	<body>
@@ -963,6 +964,17 @@
 								data-form-input
 							></textarea>
 
+							<div
+									class="cf-turnstile"
+									data-sitekey="0x4AAAAAABQ3R_9yl5D2AaAc"
+									data-callback="onTurnstileSuccess"
+							></div>
+
+							<script>
+								function onTurnstileSuccess(token) {
+									document.querySelector('[data-form-btn]').disabled = false;
+								}
+							</script>
 							<button class="form-btn" type="submit" disabled data-form-btn>
 								<ion-icon name="paper-plane"></ion-icon>
 								<span>Send Message</span>

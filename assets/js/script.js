@@ -265,6 +265,7 @@ function initContactForm() {
 			name: form.fullname.value,
 			email: form.email.value,
 			message: form.message.value,
+			token: document.querySelector('input[name="cf-turnstile-response"]')?.value,
 		};
 
 		try {
@@ -279,8 +280,13 @@ function initContactForm() {
 
 			if (response.ok) {
 				showToast("Message sent successfully!");
-				form.reset(); // Clear the form
-				// Button remains disabled due to reset until user types again
+				form.reset(); // Clear the form fields
+
+				if (window.turnstile && typeof turnstile.reset === "function") {
+					turnstile.reset();
+				}
+
+				checkFormValidity(); // Disable button until user starts typing again
 			} else {
 				const errorText = await response.text();
 				console.error("Failed to send message:", response.status, errorText);
@@ -297,6 +303,7 @@ function initContactForm() {
 	// Initial check in case of pre-filled values
 	checkFormValidity();
 }
+
 
 /**
  * Sets target="_blank" for all project item links.
