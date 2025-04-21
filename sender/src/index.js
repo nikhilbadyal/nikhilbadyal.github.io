@@ -1,6 +1,9 @@
 const allowedOrigins = [
 	"https://www.nikhilbadyal.com",
 	"https://nikhilbadyal.pages.dev",
+	"https://nikhilbadyal.vercel.app",
+	"https://nikhilbadyal.netlify.app",
+	"https://nikhilbadyal.surge.sh",
 ];
 
 export default {

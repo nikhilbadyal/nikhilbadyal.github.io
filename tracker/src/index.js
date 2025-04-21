@@ -11,7 +11,6 @@ export default {
 					"Access-Control-Allow-Origin": "*",
 					"Access-Control-Allow-Headers": "Content-Type",
 					"Strict-Transport-Security": "max-age=31536000; includeSubDomains", // Enable HSTS
-					"Access-Control-Max-Age": "86400", // Cache preflight for 24 hours
 				},
 			});
 		}
@@ -19,6 +18,9 @@ export default {
 		const allowedOrigins = [
 			"https://www.nikhilbadyal.com",
 			"https://nikhilbadyal.pages.dev",
+			"https://nikhilbadyal.vercel.app",
+			"https://nikhilbadyal.netlify.app",
+			"https://nikhilbadyal.surge.sh",
 		];
 		const origin = request.headers.get("Origin");
 
@@ -31,8 +33,8 @@ export default {
 						"Access-Control-Allow-Origin": origin, // Allow only valid origins
 						"Access-Control-Allow-Methods": "POST, OPTIONS",
 						"Access-Control-Allow-Headers": "Content-Type",
+						"Access-Control-Allow-Credentials": "true",
 						"X-Content-Type-Options": "nosniff", // Prevent MIME type sniffing
-						"Access-Control-Max-Age": "86400", // Cache preflight for 24 hours
 					},
 				});
 			}
@@ -125,6 +127,7 @@ export default {
 				"Content-Type": "text/plain",
 				"Access-Control-Allow-Origin": origin, // Return dynamic origin header
 				"Access-Control-Allow-Headers": "Content-Type",
+				"Access-Control-Allow-Credentials": "true",
 				"X-Content-Type-Options": "nosniff", // Prevent MIME type sniffing
 			},
 		});
