@@ -112,7 +112,9 @@ export default {
 
 		// --- Store Tracking Data in KV ---
 		try {
-			await env.TRACKING_KV.put(`visit:${now}`, JSON.stringify(entry));
+			await env.TRACKING_KV.put(`visit:${now}`, JSON.stringify(entry), {
+				expirationTtl: 60 * 60 * 24 * 30, // 30 days in seconds
+			});
 		} catch (error) {
 			console.error("Error storing tracking data:", error);
 			return new Response("Error storing data", { status: 500 });
