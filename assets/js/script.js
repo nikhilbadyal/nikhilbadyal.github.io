@@ -281,7 +281,7 @@ function initContactForm() {
 
 		try {
 			const response = await fetch(
-				"https://sender.wool-rage-jimmy.workers.dev",
+				"https://sender.nikhilbadyal.workers.dev",
 				{
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
@@ -429,7 +429,7 @@ async function initAnalytics() {
 		};
 
 		// Use sendBeacon if available for reliability on page unload, otherwise fallback to fetch
-		const trackerUrl = "https://tracker.wool-rage-jimmy.workers.dev/";
+		const trackerUrl = "https://tracker.nikhilbadyal.workers.dev/";
 		const data = JSON.stringify(payload);
 
 		if (navigator.sendBeacon) {
