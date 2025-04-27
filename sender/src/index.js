@@ -50,7 +50,7 @@ export default {
 				});
 			}
 
-			const { fullname, email, message, token } = data;
+			const { name, email, message, token } = data;
 
 			if (!token) {
 				return new Response("Missing Turnstile token", {
@@ -80,7 +80,7 @@ export default {
 
 			const text = `
 					📬 *New Contact Form Message*
-					*Name:* ${fullname}
+					*Name:* ${name}
 					*Email:* ${email}
 					*Message:*
 					${message}
