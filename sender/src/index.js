@@ -59,13 +59,16 @@ export default {
 				});
 			}
 
-			const verificationRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/x-www-form-urlencoded",
-				},
-				body: `secret=${env.TURNSTILE_SECRET_KEY}&response=${token}`,
-			});
+			const verificationRes = await fetch(
+				"https://challenges.cloudflare.com/turnstile/v0/siteverify",
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/x-www-form-urlencoded",
+					},
+					body: `secret=${env.TURNSTILE_SECRET_KEY}&response=${token}`,
+				}
+			);
 
 			const verificationData = await verificationRes.json();
 
@@ -76,7 +79,6 @@ export default {
 					headers: corsHeaders,
 				});
 			}
-
 
 			const text = `
 					📬 *New Contact Form Message*

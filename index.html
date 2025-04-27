@@ -31,7 +31,11 @@
 			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
 			rel="stylesheet"
 		/>
-		<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+		<script
+			src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+			async
+			defer
+		></script>
 	</head>
 
 	<body>
@@ -114,6 +118,16 @@
 								<p class="contact-title">Location</p>
 
 								<address>India</address>
+							</div>
+						</li>
+
+						<li class="contact-item">
+							<div class="icon-box">
+								<ion-icon name="desktop-outline"></ion-icon>
+							</div>
+							<div class="contact-info">
+								<p class="contact-title">Your IP Address</p>
+								<span class="contact-link" id="user-ip">Loading...</span>
 							</div>
 						</li>
 					</ul>
@@ -970,12 +984,11 @@
 							></textarea>
 
 							<div
-									class="cf-turnstile"
-									data-sitekey="0x4AAAAAABQ3R_9yl5D2AaAc"
-									data-callback="onTurnstileSuccess"
-									data-expired-callback="onTurnstileExpired"
+								class="cf-turnstile"
+								data-sitekey="0x4AAAAAABQ3R_9yl5D2AaAc"
+								data-callback="onTurnstileSuccess"
+								data-expired-callback="onTurnstileExpired"
 							></div>
-
 
 							<button class="form-btn" type="submit" disabled data-form-btn>
 								<ion-icon name="paper-plane"></ion-icon>

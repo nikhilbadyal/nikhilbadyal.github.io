@@ -261,7 +261,6 @@ function initContactForm() {
 		return;
 	}
 
-
 	formInputs.forEach((input) => {
 		input.addEventListener("input", checkFormValidity);
 	});
@@ -276,18 +275,16 @@ function initContactForm() {
 			name: form.fullname.value,
 			email: form.email.value,
 			message: form.message.value,
-			token: document.querySelector('input[name="cf-turnstile-response"]')?.value,
+			token: document.querySelector('input[name="cf-turnstile-response"]')
+				?.value,
 		};
 
 		try {
-			const response = await fetch(
-				"https://sender.nikhilbadyal.workers.dev",
-				{
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify(formData),
-				}
-			);
+			const response = await fetch("https://sender.nikhilbadyal.workers.dev", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(formData),
+			});
 
 			if (response.ok) {
 				showToast("Message sent successfully!");
@@ -314,7 +311,6 @@ function initContactForm() {
 	// Initial check in case of pre-filled values
 	checkFormValidity();
 }
-
 
 /**
  * Sets target="_blank" for all project item links.
@@ -468,6 +464,98 @@ async function initAnalytics() {
 		// showToast("Tracking failed.");
 	}
 }
+/**
+ * Fetches and displays the user's public IP address and country.
+ */
+function initUserIP() {
+	const ipElement = document.getElementById("user-ip");
+	// Get the parent LI element that wraps the IP info
+	const ipListItem = ipElement?.closest(".contact-item"); // Find the nearest ancestor with class 'contact-item'
+	const titleElement =
+		ipElement?.parentElement?.querySelector(".contact-title");
+
+	// Ensure the necessary display element and its parent LI exist
+	if (ipElement && ipListItem) {
+		console.log("Fetching user IP and Location...");
+		// Show the list item initially with a loading message
+		ipListItem.style.display = ""; // Ensure it's visible initially (or revert to default)
+		ipElement.textContent = "Loading...";
+		if (titleElement) {
+			titleElement.textContent = "Your Location Info"; // Set initial title
+		}
+
+		fetch("https://api.ipquery.io/?format=json")
+			.then((response) => {
+				if (!response.ok) {
+					console.error(
+						"HTTP error fetching IP:",
+						response.status,
+						response.statusText
+					);
+					// On HTTP error, throw error to be caught by .catch()
+					throw new Error(`HTTP error! status: ${response.status}`);
+				}
+				return response.json(); // Parse the response body as JSON
+			})
+			.then((data) => {
+				// Check if both 'ip' and 'location.country' properties exist
+				if (data && data.ip && data.location && data.location.country) {
+					// Format the output string
+					ipElement.textContent = `${data.ip} (${data.location.country})`;
+					console.log(
+						"User IP and Country found:",
+						data.ip,
+						data.location.country
+					);
+					ipListItem.style.display = ""; // Ensure it remains visible
+					if (titleElement) {
+						titleElement.textContent = "Your Location Info"; // Confirm title
+					}
+				} else if (data && data.ip) {
+					// Display just IP if country is missing
+					ipElement.textContent = data.ip + " (Country N/A)";
+					console.warn(
+						"API response missing country, displaying only IP:",
+						data
+					);
+					ipListItem.style.display = ""; // Ensure it remains visible
+					if (titleElement) {
+						titleElement.textContent = "Your IP Address"; // Revert title if only IP found
+					}
+				} else if (data && data.location && data.location.country) {
+					// Display just country if IP is missing
+					ipElement.textContent = `Country: ${data.location.country}`;
+					console.warn(
+						"API response missing IP, displaying only Country:",
+						data
+					);
+					ipListItem.style.display = ""; // Ensure it remains visible
+					if (titleElement) {
+						titleElement.textContent = "Your Country"; // Revert title if only Country
+					}
+				} else {
+					// If neither IP nor Country is reliably found in the expected structure, hide the list item
+					console.error(
+						"API response missing expected IP or location data:",
+						data
+					);
+					ipListItem.style.display = "none"; // Hide the entire item
+				}
+			})
+			.catch((error) => {
+				// Handle network errors or errors during fetch/json parsing
+				console.error("Error fetching user IP/Location:", error);
+				// On any fetch error, hide the entire list item
+				ipListItem.style.display = "none"; // Hide the entire item
+			});
+	} else {
+		// If the HTML structure is missing the required elements, log a warning
+		console.warn(
+			"Element with id='user-ip' or its parent '.contact-item' not found. Cannot display user IP/Location."
+		);
+		// If the list item was supposed to be found but wasn't, there's nothing to hide.
+	}
+}
 
 // --- Main Execution ---
 
@@ -487,5 +575,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Run analytics (can run independently)
 	initAnalytics();
 
+	initUserIP();
 	console.log("All initializations complete.");
 });
