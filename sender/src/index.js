@@ -95,6 +95,7 @@ export default {
 						chat_id: env.TELEGRAM_CHAT_ID,
 						text: text,
 						parse_mode: "Markdown",
+						message_thread_id: env.TELEGRAM_THREAD_ID,
 					}),
 				}
 			);

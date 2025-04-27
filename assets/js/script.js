@@ -392,12 +392,6 @@ async function initAnalytics() {
 			}
 		}
 
-		// Ensure page is fully loaded before collecting some metrics like LCP etc. (though not strictly needed for these metrics)
-		// await new Promise(resolve => {
-		//     if (document.readyState === "complete") resolve();
-		//     else window.addEventListener("load", resolve, { once: true });
-		// });
-
 		const payload = {
 			referrer: document.referrer || null,
 			url: window.location.href,
