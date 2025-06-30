@@ -114,11 +114,11 @@ img[loading="lazy"]:not([src]) {
 }
 
 /* Better form validation styles */
-.form-input:invalid {
+.form-input:invalid:not(:placeholder-shown) {
 	border-color: var(--bittersweet-shimmer);
 }
 
-.form-input:valid {
+.form-input:valid:not(:placeholder-shown) {
 	border-color: var(--vegas-gold);
 }
 
