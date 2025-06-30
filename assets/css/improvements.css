@@ -140,8 +140,13 @@ img[loading="lazy"]:not([src]) {
 	border-radius: 4px;
 	z-index: 1000;
 	font-weight: var(--fw-500);
+	transform: translateY(-100%);
+	opacity: 0;
+	transition: all 0.3s ease;
 }
 
 .skip-link:focus {
 	top: 6px;
+	transform: translateY(0);
+	opacity: 1;
 }
