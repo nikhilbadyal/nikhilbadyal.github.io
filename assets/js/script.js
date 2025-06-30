@@ -272,7 +272,7 @@ function initContactForm() {
   })
 
   // Initial check in case of pre-filled values
-  checkFormValidity()
+  // checkFormValidity()
 }
 
 /**
