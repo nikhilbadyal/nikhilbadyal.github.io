@@ -7,6 +7,7 @@ class DataLoader {
   constructor() {
     this.portfolioData = null
     this.resumeData = null
+    this.blogData = null
   }
 
   /**
@@ -32,24 +33,61 @@ class DataLoader {
 	 */
   async init() {
     try {
-      const [portfolioData, resumeData] = await Promise.all([
+      const [portfolioData, resumeData, blogData] = await Promise.all([
         this.loadJSON("./data/portfolio.json"),
-        this.loadJSON("./data/resume.json")
+        this.loadJSON("./data/resume.json"),
+        this.loadJSON("./data/blog.json")
       ])
 
       this.portfolioData = portfolioData
       this.resumeData = resumeData
+      this.blogData = blogData
 
       // Render data once loaded
       this.renderPortfolio()
       this.renderResume()
       this.renderSidebar()
+      this.renderBlog()
 
       console.log("Data loaded successfully")
       this.removeLoadingStates()
     } catch (error) {
       console.error("Error initializing data:", error)
     }
+  }
+
+  /**
+	 * Render blog posts
+	 */
+  renderBlog() {
+    const blogList = document.querySelector(".blog-posts-list")
+    if (!blogList) return
+    if (!this.blogData || this.blogData.length === 0) {
+      blogList.innerHTML = "<li class=\"blog-post-item\"><a href=\"#\"><figure class=\"blog-banner-box\"><img src=\"assets/images/soon.png\" alt=\"Coming soon\" loading=\"lazy\" /></figure><div class=\"blog-content\"><div class=\"blog-meta\"><p class=\"blog-category\">engineering</p><span class=\"dot\"></span><time datetime=\"2100-01-01\">Jan 01, 2100</time></div><h3 class=\"h3 blog-item-title\">Soon</h3><p class=\"blog-text\">Check again after some time.</p></div></a></li>"
+      return
+    }
+    blogList.innerHTML = this.blogData
+      .map(
+        (post) => `
+      <li class="blog-post-item">
+        <a href="${post.url}">
+          <figure class="blog-banner-box">
+            <img src="assets/images/soon.png" alt="${post.title}" loading="lazy" />
+          </figure>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <p class="blog-category">engineering</p>
+              <span class="dot"></span>
+              <time datetime="${post.date}">${new Date(post.date).toLocaleDateString(undefined, { day: "2-digit", month: "short", year: "numeric" })}</time>
+            </div>
+            <h3 class="h3 blog-item-title">${post.title}</h3>
+            <p class="blog-text">${post.summary}</p>
+          </div>
+        </a>
+      </li>
+    `
+      )
+      .join("")
   }
 
   /**
