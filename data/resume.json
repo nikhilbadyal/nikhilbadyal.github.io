@@ -1,0 +1,135 @@
+{
+	"personal": {
+		"name": "Nikhil Badyal",
+		"title": "Senior Software Engineer",
+		"email": "guts-crusher-ought@duck.com",
+		"location": "India",
+		"website": "https://nikhilbadyal.com",
+		"avatar": "assets/images/my-avatar.png"
+	},
+	"about": {
+		"paragraphs": [
+			"I am a Backend Developer and Database Engineer, specializing in designing and building scalable systems. With extensive knowledge of AWS and infrastructure, I craft solutions that are reliable, efficient, and secure.",
+			"I enjoy solving complex challenges by designing robust systems and creating tools or scripts that simplify workflows. My passion for open-source projects allows me to contribute to the tech community while constantly improving my craft. My goal is to ensure your systems are not only functional but also optimized for performance, empowering your business to grow with confidence."
+		]
+	},
+	"services": [
+		{
+			"title": "System Design",
+			"description": "Crafting scalable, efficient, and reliable systems to solve complex challenges with elegance.",
+			"icon": "assets/images/icon-design.svg"
+		},
+		{
+			"title": "Backend development",
+			"description": "Developing robust and high-performing backend solutions to drive seamless functionality.",
+			"icon": "assets/images/icon-dev.svg"
+		},
+		{
+			"title": "DevOps",
+			"description": "Expertise in CI/CD pipelines, cloud infrastructure, containerization, and automated deployments.",
+			"icon": "assets/images/icon-devops.svg"
+		},
+		{
+			"title": "Database Administrator",
+			"description": "Designing and optimizing databases for scalability, reliability, and efficient data management.",
+			"icon": "assets/images/icon-db.svg"
+		}
+	],
+	"experience": [
+		{
+			"title": "Senior Software Engineer",
+			"period": "March 2024 — Present",
+			"highlights": [
+				{
+					"title": "Multi-Tenant Architecture Specialist",
+					"description": "Transformed the project from a single-tenant to a multi-tenant system,enabling the same codebase and hardware to support multiple customers with minimal resource overhead."
+				},
+				{
+					"title": "Tool Developer",
+					"description": "Wrote EsXport, a tool that enabled the export of complex data from an Elasticsearch cluster by transforming SQL to NoSQL, significantly speeding up export requirements and bypassing traditional database methods."
+				},
+				{
+					"title": "Logging Pipeline Setup with ELK Stack",
+					"description": "Set up a logging pipeline by configuring the ELK stack to ingest 600GB of server logs per day from production servers. Pushed logs into Elasticsearch for efficient visualization and real-time search capabilities in Kibana."
+				}
+			]
+		},
+		{
+			"title": "Software Engineer",
+			"period": "June 2022 — Feb 2024",
+			"highlights": [
+				{
+					"title": "API Development",
+					"description": "Developed and wrote 50+ APIs to power core platform functionalities, managing over 100 million parcels and 4 billion events through optimized search and SQL-based transformation scripts for seamless data flow."
+				},
+				{
+					"title": "System Designer",
+					"description": "Designed the database schema and architecture for efficient data storage, including table designs, ensuring high-performance event tracking and real-time search across millions of parcels."
+				},
+				{
+					"title": "ETL Engineer",
+					"description": "Built ETL pipelines to transform raw tracking data from external carriers into manageable formats, enabling seamless integration and data storage for efficient parcel tracking, processing around 5 billion records to make the data manageable for the platform."
+				},
+				{
+					"title": "Cloud Infrastructure Engineer",
+					"description": "Managed the complete cloud infrastructure, overseeing server uptime, downtimes, deployments, and ensuring smooth and reliable operations, while also reducing costs by 20%."
+				},
+				{
+					"title": "Tool Developer",
+					"description": "Wrote Esyncer, a tool to synchronize data from SQL (Postgres) to NoSQL (Elasticsearch), enabling faster search capabilities."
+				},
+				{
+					"title": "Performance Engineer",
+					"description": "Optimized search capabilities to enable lightning-fast querying and tracking of 100 million parcels and 4 billion events in milliseconds. Integrated Elasticsearch to enable lightning-fast searches within milliseconds."
+				},
+				{
+					"title": "DevOps Engineer",
+					"description": "Implemented Dockerization for the entire setup, ensuring consistency, scalability, and ease of deployment in both development and production environments."
+				}
+			]
+		},
+		{
+			"title": "Software Engineering Intern",
+			"period": "Jan 2022 — May 2022",
+			"highlights": [
+				{
+					"title": "Backend Developer",
+					"description": "Developed and wrote 10+ APIs to power core platform functionalities and improve system performance, while managing over 10 million parcels and 100 million events through SQL-based transformation scripts for seamless data flow."
+				},
+				{
+					"title": "System Designer",
+					"description": "Designed the database schema and architecture using technologies like Redis and Redshift to ensure scalable and efficient data storage."
+				}
+			]
+		}
+	],
+	"education": [
+		{
+			"institution": "Jadavpur University",
+			"period": "2018 — 2022",
+			"description": "Completed Bachelor's in Computer Science with an 8.5 CGPA, graduating on a full scholarship for academic excellence."
+		},
+		{
+			"institution": "Jawahar Navodaya Vidyalaya",
+			"period": "2011 — 2018",
+			"description": "Achieved top rank in school academics, awarded a scholarship for outstanding performance, and consistently excelled in math and science."
+		}
+	],
+	"social": [
+		{
+			"platform": "github",
+			"url": "https://www.github.com/nikhilbadyal/",
+			"icon": "logo-github"
+		},
+		{
+			"platform": "stackoverflow",
+			"url": "https://stackoverflow.com/users/12136319/",
+			"icon": "logo-stackoverflow"
+		},
+		{
+			"platform": "linkedin",
+			"url": "https://www.linkedin.com/in/nikhilbadyal/",
+			"icon": "logo-linkedin"
+		}
+	]
+}

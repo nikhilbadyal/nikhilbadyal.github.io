@@ -1,0 +1,191 @@
+[
+	{
+		"id": "pgextras",
+		"title": "PGExtras",
+		"category": "database",
+		"description": "Unofficial Python port of Heroku's pgextras that provides various statistics for a Postgres instance.",
+		"image": "assets/images/pg.png",
+		"url": "https://github.com/nikhilbadyal/pgextras",
+		"technologies": ["Python", "PostgreSQL", "Database Analytics"]
+	},
+	{
+		"id": "esxport",
+		"title": "esxport",
+		"category": "database",
+		"description": "Export Elasticsearch index into a CSV file",
+		"image": "assets/images/es.png",
+		"url": "https://github.com/nikhilbadyal/esxport",
+		"technologies": ["Python", "Elasticsearch", "Data Export"]
+	},
+	{
+		"id": "keepnotes",
+		"title": "KeepNotes",
+		"category": "mobile/web app",
+		"description": "Simple & Beautiful Note-taking app written in dart with flutter UI toolkit.",
+		"image": "assets/images/notes.png",
+		"url": "https://github.com/nikhilbadyal/keepnotes",
+		"technologies": ["Flutter", "Dart", "Mobile App"]
+	},
+	{
+		"id": "bitwarden-backup",
+		"title": "VαultSync",
+		"category": "tools",
+		"description": "Automated Bitwarden vault backups with multi-remote cloud storage support.",
+		"image": "https://raw.githubusercontent.com/nikhilbadyal/bitwarden-backup/refs/heads/main/ui/src/full-logo.svg",
+		"url": "https://github.com/nikhilbadyal/bitwarden-backup",
+		"technologies": ["Python", "Cloud Storage", "Security"]
+	},
+	{
+		"id": "auto-aws-sso",
+		"title": "Auto AWS SSO",
+		"category": "tools",
+		"description": "CLI tool to automate AWS SSO login using Selenium with Chrome, featuring headless mode and browser automation for seamless authentication.",
+		"image": "https://www.svgrepo.com/show/373458/aws.svg",
+		"url": "assets/images/auto-aws-sso.svg",
+		"technologies": ["Python", "AWS", "Selenium", "Automation"]
+	},
+	{
+		"id": "docker-py-revanced",
+		"title": "Docker Py Revanced",
+		"category": "tools",
+		"description": "One Click Python util to build all Revanced apps.",
+		"image": "assets/images/docker-py-revanced.svg",
+		"url": "https://github.com/nikhilbadyal/docker-py-revanced",
+		"technologies": ["Docker", "Python", "Android", "Web Scraping"]
+	},
+	{
+		"id": "release-tracker",
+		"title": "Release Tracker",
+		"category": "tools",
+		"description": "Multi-platform release monitoring system that tracks software releases across GitHub, GitLab, PyPI, APKMirror, and more with smart notifications.",
+		"image": "https://www.svgrepo.com/show/453077/announcement.svg",
+		"url": "https://github.com/nikhilbadyal/release-tracker",
+		"technologies": ["Python", "API Integration", "Notifications"]
+	},
+	{
+		"id": "amul-stock-watcher",
+		"title": "Amul Stock Watcher",
+		"category": "tools",
+		"description": "Python script that monitors Amul Shop product availability and sends Telegram notifications when products become available.",
+		"image": "https://www.svgrepo.com/show/329917/amul.svg",
+		"url": "https://github.com/nikhilbadyal/amul-stock-watcher",
+		"technologies": ["Python", "Web Scraping", "Telegram Bot"]
+	},
+	{
+		"id": "ghaction-rm-releases",
+		"title": "Ghaction Rm Releases",
+		"category": "ghactions",
+		"description": "GitHub action to remove older releases with Tags",
+		"image": "assets/images/rm.png",
+		"url": "https://github.com/nikhilbadyal/ghaction-rm-releases",
+		"technologies": ["GitHub Actions", "CI/CD"]
+	},
+	{
+		"id": "valentine",
+		"title": "Will you be my Valentine",
+		"category": "tools",
+		"description": "😉",
+		"image": "assets/images/valentine.jpg",
+		"url": "https://github.com/nikhilbadyal/will-you-be-my-valentine",
+		"technologies": ["HTML", "CSS", "JavaScript"]
+	},
+	{
+		"id": "notion-backup",
+		"title": "Notion Backup",
+		"category": "tools",
+		"description": "Modular Python tool to automatically backup Notion workspaces with pluggable storage backends, cloud integration, and 70+ notification services.",
+		"image": "assets/images/notion-backup.svg",
+		"url": "https://github.com/nikhilbadyal/notion-backup",
+		"technologies": ["Python", "Notion API", "Cloud Storage"]
+	},
+	{
+		"id": "tg-totp",
+		"title": "TG Totp",
+		"category": "telegram",
+		"description": "Telegram bot to generate temporary 2FA login tokens.",
+		"image": "assets/images/totp.png",
+		"url": "https://github.com/nikhilbadyal/tg-totp",
+		"technologies": ["Python", "Telegram Bot", "2FA"]
+	},
+	{
+		"id": "tgpt-replier",
+		"title": "TGPT Replier",
+		"category": "telegram",
+		"description": "Telegram bot which can answer using ChatGPT",
+		"image": "assets/images/reply.png",
+		"url": "https://github.com/nikhilbadyal/tgpt-replier",
+		"technologies": ["Python", "Telegram Bot", "OpenAI"]
+	},
+	{
+		"id": "keepcontacts",
+		"title": "Keep Contacts",
+		"category": "mobile/web app",
+		"description": "Beautiful contact app written with Flutter",
+		"image": "assets/images/contact.png",
+		"url": "https://github.com/nikhilbadyal/keepcontacts",
+		"technologies": ["Flutter", "Dart", "Mobile App"]
+	},
+	{
+		"id": "keepswitch",
+		"title": "Keep Switch",
+		"category": "mobile/web app",
+		"description": "Flutter Switch Plugin",
+		"image": "assets/images/toggle.png",
+		"url": "https://github.com/nikhilbadyal/keepswitch",
+		"technologies": ["Flutter", "Dart", "Plugin"]
+	},
+	{
+		"id": "keepsettings",
+		"title": "KeepSettings",
+		"category": "mobile/web app",
+		"description": "Flutter Setting UI Plugin",
+		"image": "assets/images/settings.png",
+		"url": "https://github.com/nikhilbadyal/keepsettings",
+		"technologies": ["Flutter", "Dart", "UI Plugin"]
+	},
+	{
+		"id": "telegram-scrapper",
+		"title": "Telegram Channel Scraper",
+		"category": "telegram",
+		"description": "Robust Python application that downloads all files from Telegram channels with concurrent processing, smart filtering, and Cloudflare R2 integration.",
+		"image": "https://www.svgrepo.com/show/343522/telegram-communication-chat-interaction-network-connection.svg",
+		"url": "https://github.com/nikhilbadyal/telegram-scrapper",
+		"technologies": ["Python", "Telegram API", "Cloud Storage"]
+	},
+	{
+		"id": "ghaction-telegram-uploader",
+		"title": "Ghaction Telegram Uploader",
+		"category": "ghactions",
+		"description": "GitHub action to Upload files to Telegram",
+		"image": "assets/images/tg.png",
+		"url": "https://github.com/nikhilbadyal/ghaction-telegram-uploader",
+		"technologies": ["GitHub Actions", "Telegram API"]
+	},
+	{
+		"id": "telegram-forwarder",
+		"title": "Telegram Notifier",
+		"category": "ghactions",
+		"description": "Send a notification in telegram when GA finishes",
+		"image": "assets/images/noti.png",
+		"url": "https://github.com/nikhilbadyal/telegram-forwarder",
+		"technologies": ["GitHub Actions", "Telegram Bot"]
+	},
+	{
+		"id": "ghaction-apprise",
+		"title": "Ghaction Apprise",
+		"category": "ghactions",
+		"description": "Ghaction for sending notification using apprise.",
+		"image": "assets/images/rock.png",
+		"url": "https://github.com/nikhilbadyal/ghaction-apprise",
+		"technologies": ["GitHub Actions", "Notifications"]
+	},
+	{
+		"id": "githug-docker",
+		"title": "Githug Docker",
+		"category": "tools",
+		"description": "A dockerfile to play githug without installing anything",
+		"image": "assets/images/git.png",
+		"url": "https://github.com/nikhilbadyal/githug-docker",
+		"technologies": ["Docker", "Git", "Learning"]
+	}
+]

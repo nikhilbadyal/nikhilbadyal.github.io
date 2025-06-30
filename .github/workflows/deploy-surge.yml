@@ -22,11 +22,17 @@ jobs:
         with:
           node-version: "latest"
 
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build project
+        run: node build.js
+
       - name: Install Surge.sh
         run: npm install -g surge
 
       - name: Deploy to Surge.sh
-        run: surge . nikhilbadyal.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+        run: surge dist nikhilbadyal.surge.sh --token ${{ secrets.SURGE_TOKEN }}
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
