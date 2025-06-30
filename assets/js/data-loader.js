@@ -63,7 +63,8 @@ class DataLoader {
     const blogList = document.querySelector(".blog-posts-list")
     if (!blogList) return
     if (!this.blogData || this.blogData.length === 0) {
-      blogList.innerHTML = "<li class=\"blog-post-item\"><a href=\"#\"><figure class=\"blog-banner-box\"><img src=\"assets/images/soon.png\" alt=\"Coming soon\" loading=\"lazy\" /></figure><div class=\"blog-content\"><div class=\"blog-meta\"><p class=\"blog-category\">engineering</p><span class=\"dot\"></span><time datetime=\"2100-01-01\">Jan 01, 2100</time></div><h3 class=\"h3 blog-item-title\">Soon</h3><p class=\"blog-text\">Check again after some time.</p></div></a></li>"
+      blogList.innerHTML =
+				'<li class="blog-post-item"><a href="#"><figure class="blog-banner-box"><img src="assets/images/soon.png" alt="Coming soon" loading="lazy" /></figure><div class="blog-content"><div class="blog-meta"><p class="blog-category">engineering</p><span class="dot"></span><time datetime="2100-01-01">Jan 01, 2100</time></div><h3 class="h3 blog-item-title">Soon</h3><p class="blog-text">Check again after some time.</p></div></a></li>'
       return
     }
     blogList.innerHTML = this.blogData
