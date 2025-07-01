@@ -10,7 +10,11 @@ const ERROR_CODES = {
 	IP_MISSING: "IP-403"
 };
 
-// ---- DATA SANITIZATION: Only allow whitelisted fields (deep) ----
+// ---- DATA SANITIZATION: Only allow whitelisted fields (deep), truncate strings ----
+function truncate(str, maxLen = 512) {
+	return typeof str === "string" ? str.slice(0, maxLen) : str;
+}
+
 function sanitizeData(data) {
 	const clean = {};
 	if (typeof data !== "object" || !data) return clean;
@@ -19,7 +23,7 @@ function sanitizeData(data) {
 	if ("connection" in data && typeof data.connection === "object" && data.connection) {
 		clean.connection = {
 			downlink: typeof data.connection.downlink === "number" ? data.connection.downlink : null,
-			effectiveType: typeof data.connection.effectiveType === "string" ? data.connection.effectiveType : null,
+			effectiveType: truncate(data.connection.effectiveType, 32),
 			rtt: typeof data.connection.rtt === "number" ? data.connection.rtt : null
 		};
 	}
@@ -28,7 +32,7 @@ function sanitizeData(data) {
 	if ("screen" in data && typeof data.screen === "object" && data.screen) {
 		clean.screen = {
 			height: typeof data.screen.height === "number" ? data.screen.height : null,
-			orientation: typeof data.screen.orientation === "string" ? data.screen.orientation : null,
+			orientation: truncate(data.screen.orientation, 32),
 			pixelRatio: typeof data.screen.pixelRatio === "number" ? data.screen.pixelRatio : null,
 			width: typeof data.screen.width === "number" ? data.screen.width : null
 		};
@@ -40,7 +44,9 @@ function sanitizeData(data) {
 		"sessionId", "timeZone", "timestamp", "title", "url", "userAgent", "visibility"
 	]) {
 		if (key in data) {
-			clean[key] = data[key];
+			let value = data[key];
+			if (typeof value === "string") value = truncate(value, 512);
+			clean[key] = value;
 		}
 	}
 
@@ -84,12 +90,13 @@ export default {
 						"Access-Control-Allow-Headers": "Content-Type",
 						"Access-Control-Allow-Credentials": "true",
 						"X-Content-Type-Options": "nosniff", // Prevent MIME type sniffing
+						"Strict-Transport-Security": "max-age=31536000; includeSubDomains",
 					},
 				});
 			}
 			return new Response(
 				JSON.stringify({ error: "Forbidden", code: ERROR_CODES.ORIGIN_DENIED }),
-				{ status: 403, headers: { "Content-Type": "application/json" } }
+				{ status: 403, headers: { "Content-Type": "application/json", "Strict-Transport-Security": "max-age=31536000; includeSubDomains" } }
 			);
 		}
 
@@ -99,7 +106,11 @@ export default {
 				JSON.stringify({ error: "Forbidden", code: ERROR_CODES.METHOD_NOT_ALLOWED }),
 				{
 					status: 405,
-					headers: { Allow: "POST, OPTIONS", "Content-Type": "application/json" },
+					headers: {
+						Allow: "POST, OPTIONS",
+						"Content-Type": "application/json",
+						"Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+					},
 				}
 			);
 		}
@@ -108,13 +119,13 @@ export default {
 		if (!origin) {
 			return new Response(
 				JSON.stringify({ error: "Forbidden", code: ERROR_CODES.ORIGIN_MISSING }),
-				{ status: 403, headers: { "Content-Type": "application/json" } }
+				{ status: 403, headers: { "Content-Type": "application/json", "Strict-Transport-Security": "max-age=31536000; includeSubDomains" } }
 			);
 		}
 		if (!allowedOrigins.includes(origin)) {
 			return new Response(
 				JSON.stringify({ error: "Forbidden", code: ERROR_CODES.ORIGIN_DENIED }),
-				{ status: 403, headers: { "Content-Type": "application/json" } }
+				{ status: 403, headers: { "Content-Type": "application/json", "Strict-Transport-Security": "max-age=31536000; includeSubDomains" } }
 			);
 		}
 
@@ -122,7 +133,7 @@ export default {
 		if (!clientIP) {
 			return new Response(
 				JSON.stringify({ error: "Forbidden", code: ERROR_CODES.IP_MISSING }),
-				{ status: 403, headers: { "Content-Type": "application/json" } }
+				{ status: 403, headers: { "Content-Type": "application/json", "Strict-Transport-Security": "max-age=31536000; includeSubDomains" } }
 			);
 		}
 		const country = request.cf?.country || "Unknown";
@@ -138,7 +149,7 @@ export default {
 		if (rateLimitData && rateLimitData.count >= maxRequestsPerMinute) {
 			return new Response(
 				JSON.stringify({ error: "Forbidden", code: ERROR_CODES.RATE_LIMITED }),
-				{ status: 429, headers: { "Content-Type": "application/json" } }
+				{ status: 429, headers: { "Content-Type": "application/json", "Strict-Transport-Security": "max-age=31536000; includeSubDomains" } }
 			);
 		}
 
@@ -159,22 +170,21 @@ export default {
 			if (!data || typeof data !== "object") {
 				return new Response(
 					JSON.stringify({ error: "Forbidden", code: ERROR_CODES.INVALID_JSON }),
-					{ status: 400, headers: { "Content-Type": "application/json" } }
+					{ status: 400, headers: { "Content-Type": "application/json", "Strict-Transport-Security": "max-age=31536000; includeSubDomains" } }
 				);
 			}
 		} catch {
 			return new Response(
 				JSON.stringify({ error: "Forbidden", code: ERROR_CODES.INVALID_JSON }),
-				{ status: 400, headers: { "Content-Type": "application/json" } }
+				{ status: 400, headers: { "Content-Type": "application/json", "Strict-Transport-Security": "max-age=31536000; includeSubDomains" } }
 			);
 		}
 
 		// --- Data Validation ---
-		// Only check sessionId field here, rest is sanitized below
 		if (typeof data.sessionId !== "string" || data.sessionId.length > 255) {
 			return new Response(
 				JSON.stringify({ error: "Forbidden", code: ERROR_CODES.INVALID_DATA }),
-				{ status: 400, headers: { "Content-Type": "application/json" } }
+				{ status: 400, headers: { "Content-Type": "application/json", "Strict-Transport-Security": "max-age=31536000; includeSubDomains" } }
 			);
 		}
 
@@ -190,19 +200,28 @@ export default {
 			ua,
 		};
 
+		// --- Unique KV Key (avoid collisions) ---
+		let uniqueId;
+		try {
+			uniqueId = crypto.randomUUID();
+		} catch {
+			// Polyfill if not supported
+			uniqueId = Math.random().toString(36).slice(2) + Date.now();
+		}
+		const visitKey = `visit:${now}:${uniqueId}`;
+
 		// --- Store Tracking Data in KV ---
 		try {
-			// (Optional: check entry size, e.g., 24 MiB, to avoid Cloudflare limit)
 			const entryStr = JSON.stringify(entry);
 			if (entryStr.length > 24 * 1024 * 1024) { // ~24MiB
 				return new Response(
 					JSON.stringify({ error: "Forbidden", code: ERROR_CODES.INVALID_DATA }),
-					{ status: 400, headers: { "Content-Type": "application/json" } }
+					{ status: 400, headers: { "Content-Type": "application/json", "Strict-Transport-Security": "max-age=31536000; includeSubDomains" } }
 				);
 			}
 
 			await env.TRACKING_KV.put(
-				`visit:${now}`,
+				visitKey,
 				entryStr,
 				{ expirationTtl: 60 * 60 * 24 * 30 }
 			);
@@ -210,7 +229,7 @@ export default {
 			console.error("Error storing tracking data:", error);
 			return new Response(
 				JSON.stringify({ error: "Forbidden", code: ERROR_CODES.STORAGE_ERROR }),
-				{ status: 500, headers: { "Content-Type": "application/json" } }
+				{ status: 500, headers: { "Content-Type": "application/json", "Strict-Transport-Security": "max-age=31536000; includeSubDomains" } }
 			);
 		}
 
@@ -223,6 +242,7 @@ export default {
 				"Access-Control-Allow-Headers": "Content-Type",
 				"Access-Control-Allow-Credentials": "true",
 				"X-Content-Type-Options": "nosniff", // Prevent MIME type sniffing
+				"Strict-Transport-Security": "max-age=31536000; includeSubDomains",
 			},
 		});
 	},
