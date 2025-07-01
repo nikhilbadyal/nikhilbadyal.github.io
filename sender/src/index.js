@@ -6,6 +6,16 @@ const allowedOrigins = [
 	"https://nikhilbadyal.surge.sh",
 ];
 
+// --- Only you know what these mean! ---
+const ERROR_CODES = {
+	INVALID_JSON: "J5N-ERR9",
+	MISSING_TOKEN: "TK9-MSSN",
+	CAPTCHA_FAILED: "CAP-403D",
+	TELEGRAM_FAIL: "TEL-519C",
+	ORIGIN_NOT_ALLOWED: "ORI-003F",
+	NOT_FOUND: "NF-404Q"
+};
+
 export default {
 	async fetch(request, env, ctx) {
 		const url = new URL(request.url);
@@ -37,6 +47,20 @@ export default {
 			});
 		}
 
+		// If origin is not allowed, forbidden forever
+		if (!isAllowed) {
+			return new Response(
+				JSON.stringify({
+					error: "Forbidden",
+					code: ERROR_CODES.ORIGIN_NOT_ALLOWED
+				}),
+				{
+					status: 403,
+					headers: { ...corsHeaders, "Content-Type": "application/json" }
+				}
+			);
+		}
+
 		// Handle form POST
 		if (request.method === "POST") {
 			let data;
@@ -44,21 +68,34 @@ export default {
 				data = await request.json();
 			} catch (err) {
 				console.error("Failed to parse JSON:", err); // Log the actual error for debugging
-				return new Response("Invalid JSON", {
-					status: 400,
-					headers: corsHeaders,
-				});
+				return new Response(
+					JSON.stringify({
+						error: "Forbidden",
+						code: ERROR_CODES.INVALID_JSON
+					}),
+					{
+						status: 400,
+						headers: { ...corsHeaders, "Content-Type": "application/json" }
+					}
+				);
 			}
 
 			const { name, email, message, token } = data;
 
 			if (!token) {
-				return new Response("Missing Turnstile token", {
-					status: 400,
-					headers: corsHeaders,
-				});
+				return new Response(
+					JSON.stringify({
+						error: "Forbidden",
+						code: ERROR_CODES.MISSING_TOKEN
+					}),
+					{
+						status: 400,
+						headers: { ...corsHeaders, "Content-Type": "application/json" }
+					}
+				);
 			}
 
+			// Turnstile CAPTCHA verification
 			const verificationRes = await fetch(
 				"https://challenges.cloudflare.com/turnstile/v0/siteverify",
 				{
@@ -74,12 +111,19 @@ export default {
 
 			if (!verificationData.success) {
 				console.log("Turnstile verification failed", verificationData);
-				return new Response("CAPTCHA failed", {
-					status: 403,
-					headers: corsHeaders,
-				});
+				return new Response(
+					JSON.stringify({
+						error: "Forbidden",
+						code: ERROR_CODES.CAPTCHA_FAILED
+					}),
+					{
+						status: 403,
+						headers: { ...corsHeaders, "Content-Type": "application/json" }
+					}
+				);
 			}
 
+			// Telegram notification
 			const text = `
 					📬 *New Contact Form Message*
 					*Name:* ${name}
@@ -106,16 +150,30 @@ export default {
 				return new Response("Sent", { headers: corsHeaders });
 			} else {
 				const errText = await res.text();
-				return new Response(`Failed to send message: ${errText}`, {
-					status: 500,
-					headers: corsHeaders,
-				});
+				return new Response(
+					JSON.stringify({
+						error: "Forbidden",
+						code: ERROR_CODES.TELEGRAM_FAIL,
+						telegram: errText
+					}),
+					{
+						status: 500,
+						headers: { ...corsHeaders, "Content-Type": "application/json" }
+					}
+				);
 			}
 		}
 
-		return new Response("Not found", {
-			status: 404,
-			headers: corsHeaders,
-		});
+		// Fallback 404
+		return new Response(
+			JSON.stringify({
+				error: "Not found",
+				code: ERROR_CODES.NOT_FOUND
+			}),
+			{
+				status: 404,
+				headers: { ...corsHeaders, "Content-Type": "application/json" }
+			}
+		);
 	},
 };
