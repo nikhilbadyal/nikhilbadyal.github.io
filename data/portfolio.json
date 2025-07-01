@@ -18,6 +18,38 @@
 		"technologies": ["Python", "Elasticsearch", "Data Export"]
 	},
 	{
+		"id": "cf-analytics-tracker",
+		"title": "Cloudflare Worker Analytics Tracker",
+		"category": "serverless/backend",
+		"description": "Cloudflare Worker for secure analytics logging with data sanitization and rate limiting.",
+		"image": "https://www.svgrepo.com/show/299298/analytics-magnifying-glass.svg",
+		"url": "https://github.com/nikhilbadyal/nikhilbadyal.github.io/tree/main/tracker",
+		"technologies": [
+			"Cloudflare Workers",
+			"JavaScript",
+			"Serverless",
+			"Security",
+			"Rate Limiting",
+			"Analytics"
+		]
+	},
+	{
+		"id": "cf-sender-form",
+		"title": "Cloudflare Worker Contact Form Handler",
+		"category": "serverless/backend",
+		"description": "Cloudflare Worker backend for spam-proof contact forms, using CAPTCHA, CORS, Telegram alerts, and input sanitization.",
+		"image": "https://www.svgrepo.com/show/138760/pigeon.svg",
+		"url": "https://github.com/nikhilbadyal/nikhilbadyal.github.io/tree/main/sender",
+		"technologies": [
+			"Cloudflare Workers",
+			"JavaScript",
+			"Telegram Bot",
+			"CAPTCHA",
+			"Security",
+			"Serverless"
+		]
+	},
+	{
 		"id": "keepnotes",
 		"title": "KeepNotes",
 		"category": "mobile/web app",
@@ -150,7 +182,7 @@
 		"description": "Robust Python application that downloads all files from Telegram channels with concurrent processing, smart filtering, and Cloudflare R2 integration.",
 		"image": "https://www.svgrepo.com/show/343522/telegram-communication-chat-interaction-network-connection.svg",
 		"url": "https://github.com/nikhilbadyal/telegram-scrapper",
-		"technologies": ["Python", "Telegram API", "Cloud Storage"]
+		"technologies": ["Python", "Telegram Bot", "Cloud Storage"]
 	},
 	{
 		"id": "ghaction-telegram-uploader",
@@ -159,7 +191,7 @@
 		"description": "GitHub action to Upload files to Telegram",
 		"image": "assets/images/tg.png",
 		"url": "https://github.com/nikhilbadyal/ghaction-telegram-uploader",
-		"technologies": ["GitHub Actions", "Telegram API"]
+		"technologies": ["GitHub Actions", "Telegram Bot"]
 	},
 	{
 		"id": "telegram-forwarder",
