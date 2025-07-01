@@ -13,8 +13,27 @@ const ERROR_CODES = {
 	CAPTCHA_FAILED: "CAP-403D",
 	TELEGRAM_FAIL: "TEL-519C",
 	ORIGIN_NOT_ALLOWED: "ORI-003F",
-	NOT_FOUND: "NF-404Q"
+	NOT_FOUND: "NF-404Q",
+	INVALID_EMAIL: "EML-22X",
 };
+
+// Utility: Truncate to prevent DoS, oversized spam, or accidental abuse
+function truncate(str, maxLen = 1024) {
+	return typeof str === "string" ? str.slice(0, maxLen) : "";
+}
+
+// Utility: Escape Markdown for Telegram
+function escapeMarkdown(text) {
+	return typeof text === "string"
+		? text.replace(/([_*[\]()~`>#+=|{}.!-])/g, "\\$1")
+		: "";
+}
+
+// Utility: Basic email format validation (optional)
+function isValidEmail(email) {
+	return typeof email === "string" &&
+		/^[^@]+@[^@]+\.[^@]+$/.test(email);
+}
 
 export default {
 	async fetch(request, env, ctx) {
@@ -80,7 +99,25 @@ export default {
 				);
 			}
 
-			const { name, email, message, token } = data;
+			// Defensive extraction and truncation
+			const name = truncate(data.name, 128);
+			const email = truncate(data.email, 256);
+			const message = truncate(data.message, 2048);
+			const token = data.token;
+
+			// Optional: Email validation (remove if not needed)
+			if (!isValidEmail(email)) {
+				return new Response(
+					JSON.stringify({
+						error: "Forbidden",
+						code: ERROR_CODES.INVALID_EMAIL
+					}),
+					{
+						status: 400,
+						headers: { ...corsHeaders, "Content-Type": "application/json" }
+					}
+				);
+			}
 
 			if (!token) {
 				return new Response(
@@ -123,14 +160,14 @@ export default {
 				);
 			}
 
-			// Telegram notification
+			// Telegram notification (escape all fields)
 			const text = `
-					📬 *New Contact Form Message*
-					*Name:* ${name}
-					*Email:* ${email}
-					*Message:*
-					${message}
-						  `.trim();
+📬 *New Contact Form Message*
+*Name:* ${escapeMarkdown(name)}
+*Email:* ${escapeMarkdown(email)}
+*Message:*
+${escapeMarkdown(message)}
+			`.trim();
 
 			const res = await fetch(
 				`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`,
