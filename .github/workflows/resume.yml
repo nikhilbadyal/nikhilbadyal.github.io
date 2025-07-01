@@ -17,7 +17,7 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v4.2.2
       - name: Compile Tex to PDF
-        uses: xu-cheng/latex-action@3.2.0
+        uses: xu-cheng/latex-action@3.3.0
         with:
           root_file: "assets/tex/NikhilBadyal.tex"
       - name: Move PDF to pdf directory
