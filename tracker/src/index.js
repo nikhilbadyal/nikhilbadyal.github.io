@@ -135,11 +135,11 @@ export default {
 
 		// --- Compose Entry ---
 		const entry = {
+			...data,
 			timestamp: new Date(now).toISOString(),
 			ip: clientIP,
 			country,
 			ua,
-			...data,
 		};
 
 		// --- Store Tracking Data in KV ---
