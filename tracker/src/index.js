@@ -6,7 +6,8 @@ const ERROR_CODES = {
 	RATE_LIMITED: "RAT-LMT9",
 	INVALID_JSON: "J5N-ERR9",
 	INVALID_DATA: "DTX-22B3",
-	STORAGE_ERROR: "STR-505E"
+	STORAGE_ERROR: "STR-505E",
+	IP_MISSING: "IP-403"
 };
 
 export default {
@@ -81,6 +82,12 @@ export default {
 		}
 
 		const clientIP = request.headers.get("cf-connecting-ip");
+		if (!clientIP) {
+			return new Response(
+				JSON.stringify({ error: "Forbidden", code: ERROR_CODES.IP_MISSING }),
+				{ status: 403, headers: { "Content-Type": "application/json" } }
+			);
+		}
 		const country = request.cf?.country || "Unknown";
 		const ua = request.headers.get("user-agent");
 		const now = Date.now();
