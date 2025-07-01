@@ -10,6 +10,43 @@ const ERROR_CODES = {
 	IP_MISSING: "IP-403"
 };
 
+// ---- DATA SANITIZATION: Only allow whitelisted fields (deep) ----
+function sanitizeData(data) {
+	const clean = {};
+	if (typeof data !== "object" || !data) return clean;
+
+	// 'connection' object
+	if ("connection" in data && typeof data.connection === "object" && data.connection) {
+		clean.connection = {
+			downlink: typeof data.connection.downlink === "number" ? data.connection.downlink : null,
+			effectiveType: typeof data.connection.effectiveType === "string" ? data.connection.effectiveType : null,
+			rtt: typeof data.connection.rtt === "number" ? data.connection.rtt : null
+		};
+	}
+
+	// 'screen' object
+	if ("screen" in data && typeof data.screen === "object" && data.screen) {
+		clean.screen = {
+			height: typeof data.screen.height === "number" ? data.screen.height : null,
+			orientation: typeof data.screen.orientation === "string" ? data.screen.orientation : null,
+			pixelRatio: typeof data.screen.pixelRatio === "number" ? data.screen.pixelRatio : null,
+			width: typeof data.screen.width === "number" ? data.screen.width : null
+		};
+	}
+
+	// Allowed flat keys
+	for (const key of [
+		"cpuCores", "deviceMemory", "doNotTrack", "hash", "isBot", "language", "pathname", "referrer", "search",
+		"sessionId", "timeZone", "timestamp", "title", "url", "userAgent", "visibility"
+	]) {
+		if (key in data) {
+			clean[key] = data[key];
+		}
+	}
+
+	return clean;
+}
+
 export default {
 	async fetch(request, env, ctx) {
 		const url = new URL(request.url);
@@ -133,6 +170,7 @@ export default {
 		}
 
 		// --- Data Validation ---
+		// Only check sessionId field here, rest is sanitized below
 		if (typeof data.sessionId !== "string" || data.sessionId.length > 255) {
 			return new Response(
 				JSON.stringify({ error: "Forbidden", code: ERROR_CODES.INVALID_DATA }),
@@ -140,10 +178,13 @@ export default {
 			);
 		}
 
-		// --- Compose Entry ---
+		// --- SANITIZE THE DATA ---
+		const sanitizedData = sanitizeData(data);
+
+		// --- Compose Entry (never spread raw ...data!) ---
 		const entry = {
-			...data,
-			timestamp: new Date(now).toISOString(),
+			...sanitizedData,
+			timestamp: new Date(now).toISOString(), // Use server timestamp
 			ip: clientIP,
 			country,
 			ua,
@@ -151,9 +192,18 @@ export default {
 
 		// --- Store Tracking Data in KV ---
 		try {
+			// (Optional: check entry size, e.g., 24 MiB, to avoid Cloudflare limit)
+			const entryStr = JSON.stringify(entry);
+			if (entryStr.length > 24 * 1024 * 1024) { // ~24MiB
+				return new Response(
+					JSON.stringify({ error: "Forbidden", code: ERROR_CODES.INVALID_DATA }),
+					{ status: 400, headers: { "Content-Type": "application/json" } }
+				);
+			}
+
 			await env.TRACKING_KV.put(
 				`visit:${now}`,
-				JSON.stringify(entry),
+				entryStr,
 				{ expirationTtl: 60 * 60 * 24 * 30 }
 			);
 		} catch (error) {
