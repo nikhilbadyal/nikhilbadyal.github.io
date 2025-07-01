@@ -62,7 +62,7 @@
 		"id": "bitwarden-backup",
 		"title": "VαultSync",
 		"category": "tools",
-		"description": "Automated Bitwarden vault backups with multi-remote cloud storage support.",
+		"description": "Automated Bitwarden vault backups with multi-remote cloud storage support. Included a Backend API written in Fast API and a Web UI(React + Vite) for easy management.",
 		"image": "https://raw.githubusercontent.com/nikhilbadyal/bitwarden-backup/refs/heads/main/ui/src/full-logo.svg",
 		"url": "https://github.com/nikhilbadyal/bitwarden-backup",
 		"technologies": ["Python", "Cloud Storage", "Security"]
