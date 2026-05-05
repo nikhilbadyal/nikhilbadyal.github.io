@@ -13,7 +13,7 @@
 		"all": "yarn prettier:fix && yarn prettier && yarn lint:fix && yarn lint"
 	},
 	"devDependencies": {
-		"eslint": "^9.30.0",
+		"eslint": "^10.0.0",
 		"eslint-plugin-github": "^6.0.0",
 		"eslint-plugin-prettier": "^5.5.1",
 		"eslint-config-prettier": "^10.1.5",
