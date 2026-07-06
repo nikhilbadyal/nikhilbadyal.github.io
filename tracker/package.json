@@ -10,7 +10,7 @@
 	},
 	"devDependencies": {
 		"@cloudflare/vitest-pool-workers": "^0.16.17",
-		"prettier": "3.8.4",
+		"prettier": "3.9.3",
 		"vitest": "~4.1.0",
 		"wrangler": "^4.102.0"
 	}
